@@ -5,7 +5,6 @@ import time
 import uuid
 import random
 from concurrent.futures import ThreadPoolExecutor
-from pystyle import Colors, Colorate
 from datetime import datetime
 from bs4 import BeautifulSoup
 MESSAGES = {
